@@ -112,7 +112,7 @@ csv_headers = [
 
 def aggregate(csv_list, years, cusips):
 	for year in years:
-		assert (year >= 2007 and year < 2025)
+		assert (year >= 2001 and year < 2101)
 		cds_base_url = 'https://services.cds.ca/applications/taxforms/taxforms.nsf'
 		cds_retreive_str = 'T3-' + str(year)
 		cached_cds = Path(cds_retreive_str + '.html')
@@ -132,13 +132,6 @@ def aggregate(csv_list, years, cusips):
 
 		tables = soup.find_all('table')
 		table = tables[5]
-
-		#for child in table.recursiveChildGenerator():
-		#	name = getattr(child, "name", None)
-		#	if name is not None:
-		#		print (name)
-		#	elif not child.isspace(): # leaf node, don't print spaces
-		#		print (child)
 
 		rows = table.find_all('tr')
 		headers = rows[0].find_all('td')
@@ -169,16 +162,12 @@ def aggregate(csv_list, years, cusips):
 			cusip_cell = cols[cusip_column].find('span', {'class':'Cusip'}).text.strip()
 			href_cell = cols[form_column ].find('a', href=True, recursive=True)['href']
 			if cusip_cell in cusip_lookup:
-				#print('!!!!!!!!!!!DUPLICATE ENTRY!!!!!!!!!!!!' + cusip_cell)
-				#print('Compare ' + date_cell.strftime(datestrf) + ' with ' + cusip_dates[cusip_cell].strftime(datestrf))
 				if (date_cell > cusip_dates[cusip_cell]):
-					#print('Chose ' + date_cell.strftime(datestrf) + ' ' + href_cell)
 					cusip_lookup[cusip_cell] = cds_base_url + '/' + href_cell
 					cusip_dates [cusip_cell] = date_cell
 			else:
 				cusip_lookup[cusip_cell] = cds_base_url + '/' + href_cell
 				cusip_dates [cusip_cell] = date_cell
-			#print('CUSIP ' + cusip + ' HREF ' + href)
 		for cusip in cusips:
 			try:
 				print(cusip_lookup[cusip])
@@ -188,7 +177,6 @@ def aggregate(csv_list, years, cusips):
 				cached_xls = Path(xls_file)
 				try:
 					cached_xls_abs = cached_xls.resolve(strict=True)
-					#cached_xls_file = open(cached_xls,"rb")
 					print('Cached')
 				except FileNotFoundError:
 					print('Fetching')
@@ -196,7 +184,6 @@ def aggregate(csv_list, years, cusips):
 					   cached_xls_file = open(cached_xls,"wb+")
 					   shutil.copyfileobj(response, cached_xls_file)
 					   cached_xls_file.close()
-					   #cached_xls_file.seek(0)
 
 				print(xls_file)
 
