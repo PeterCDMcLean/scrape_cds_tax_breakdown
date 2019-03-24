@@ -68,13 +68,13 @@ Example:
 
 Gather T3 info for CUSIP 12345678 for tax year 2019
 ```
-> python scrape_cds_tax_breakdown.py --cusip 12345678 --year 2019
+$ python scrape_cds_tax_breakdown.py --cusip 12345678 --year 2019
 ```
 
 ```
 Gather T3 info for CUSIP 12345678 and 87654321 for tax years 2018, 2019
 ```
-> python scrape_cds_tax_breakdown.py --cusip 12345678 87654321 --year 2018 2019
+$ python scrape_cds_tax_breakdown.py --cusip 12345678 87654321 --year 2018 2019
 ```
 
 '''
