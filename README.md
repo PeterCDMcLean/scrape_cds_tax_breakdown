@@ -13,21 +13,26 @@ In my opinion, this script does not violate CDS Innovation terms of service as u
 on their own and with no intermediate service or assistance. It's simply a more efficient way to collect the data.
 
 # Warning!
-Use of the information provided by this script does not provide any gaurentee of the accuracy or correctness of the information.
-Nor does the author provide any gaurentee of the functionality of this script. Users should be exercise their own caution.
+Use of the information provided by this script does not provide any guarantee of the accuracy or correctness of the information.
+Nor does the author provide any guarantee of the functionality of this script. Users should be exercise their own caution.
 Users should take particular care when funds issue revised forms to CDS website. 
+See the MIT License for more legal-ese that protects me from getting sued.
 
 # Dependencies
 
-Tool            Tested Version
-python          3.7.0
+| Tool           | Tested Version |
+| -------------- | -------------- |
+| python         | 3.7.0          |
+
+See: https://www.python.org/downloads/
 
 pip install xlrd
 pip install beautifulsoup4
 
-Library          Tested Version
-xlrd             1.1.0
-beautifulsoup4   4.7.1
+| Library        | Tested Version |
+| -------------- | -------------- |
+| xlrd           | 1.1.0          |
+| beautifulsoup4 | 4.7.1          |
 
 # Behavior
 
@@ -38,11 +43,11 @@ Example:
 
 Gather T3 info for CUSIP 12345678 for tax year 2019
 ```
-python scrape_cds_tax_breakdown.py --cusip 12345678 --year 2019
+> python scrape_cds_tax_breakdown.py --cusip 12345678 --year 2019
 ```
 
 ```
 Gather T3 info for CUSIP 12345678 and 87654321 for tax years 2018, 2019
 ```
-python scrape_cds_tax_breakdown.py --cusip 12345678 87654321 --year 2018 2019
+> python scrape_cds_tax_breakdown.py --cusip 12345678 87654321 --year 2018 2019
 ```
