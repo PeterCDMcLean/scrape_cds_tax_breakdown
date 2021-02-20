@@ -28,11 +28,13 @@ See: https://www.python.org/downloads/
 
 pip install xlrd
 pip install beautifulsoup4
+pip install html5lib
 
 | Library        | Tested Version |
 | -------------- | -------------- |
-| xlrd           | 1.1.0          |
-| beautifulsoup4 | 4.7.1          |
+| xlrd           | 1.1.0, 2.0.1   |
+| beautifulsoup4 | 4.7.1, 4.9.3   |
+| html5lib       | 1.1            |
 
 # Behavior
 
