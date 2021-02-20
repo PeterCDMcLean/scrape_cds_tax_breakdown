@@ -53,11 +53,13 @@ See: https://www.python.org/downloads/
 
 pip install xlrd
 pip install beautifulsoup4
+pip install html5lib
 
 | Library        | Tested Version |
 | -------------- | -------------- |
 | xlrd           | 1.1.0          |
 | beautifulsoup4 | 4.7.1          |
+| html5lib       | 1.1            |
 
 # Behavior
 
@@ -91,6 +93,7 @@ from pathlib import Path
 import shutil
 from collections import namedtuple
 from datetime import datetime
+import re
 
 csv_headers = [
 	'Symbol',
@@ -168,6 +171,9 @@ def aggregate(csv_list, years, cusips):
 			else:
 				cusip_lookup[cusip_cell] = cds_base_url + '/' + href_cell
 				cusip_dates [cusip_cell] = date_cell
+				
+			cusip_lookup[cusip_cell] = re.sub(r'/./', '/', cusip_lookup[cusip_cell])
+
 		for cusip in cusips:
 			try:
 				print(cusip_lookup[cusip])
@@ -175,6 +181,7 @@ def aggregate(csv_list, years, cusips):
 				xls_file = os.path.basename(urllib.parse.urlparse(cusip_lookup[cusip]).path)
 
 				cached_xls = Path(xls_file)
+				
 				try:
 					cached_xls_abs = cached_xls.resolve(strict=True)
 					print('Cached')
