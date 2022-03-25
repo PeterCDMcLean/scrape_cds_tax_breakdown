@@ -1,7 +1,7 @@
 '''
 MIT License
 
-Copyright (c) 2019 PeterCDMcLean
+Copyright (c) 2022 PeterCDMcLean
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -133,8 +133,7 @@ def aggregate(csv_list, years, cusips):
 
 		soup = BeautifulSoup(cached_cds_file, 'html5lib')
 
-		tables = soup.find_all('table')
-		table = tables[5]
+		table = soup.find('table', id='taxlist')
 
 		rows = table.find_all('tr')
 		headers = rows[0].find_all('td')
